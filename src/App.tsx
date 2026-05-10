@@ -1,20 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import LoginForm from "./components/login/LoginForm";
+import QuestionDetail from "./components/question/QuestionDetail";
+import QuestionList from "./components/question/QuestionList";
+import RaportSekolahMingguDetail from "./components/raport/RaportSekolahMingguDetail";
+import RaportSekolahMingguForm from "./components/raport/RaportSekolahMingguForm";
+import RaportSekolahMingguList from "./components/raport/RaportSekolahMingguList";
 import { AuthProvider } from "./context/AuthContext";
 import { QuestionProvider } from "./context/QuestionContext";
-import { useAuth } from "./hooks/useAuth";
-import QuestionList from "./components/question/QuestionList";
-import QuestionDetail from "./components/question/QuestionDetail";
 
 const AppRoutes = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  if (!user) return <LoginForm />;
+  // if (!user) return <LoginForm />;
 
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<RaportSekolahMingguList />} />
+      <Route path="/createreport" element={<RaportSekolahMingguForm />} />
+      <Route path="/report/:id" element={<RaportSekolahMingguDetail />} />
+      <Route path="/report" element={<RaportSekolahMingguList />} />
       <Route path="/questions" element={<QuestionList />} />
       <Route path="/questions/:id" element={<QuestionDetail />} />
     </Routes>
